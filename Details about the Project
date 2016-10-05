@@ -1,0 +1,20 @@
+When the device is first turned on it downloads all the remotes available in the database and asks the user to input a String (Brand of AC). The script then searches for the configuration files with that name and moves it to the required folder and loads it. Then starts the actual part. On detection of motions using the Pyroelectric IR sensor, the DHT11 Module captures the room temperature,the thermal imaging sensor captures an image and the script analyses the image and room temperature using OPENCV and NumPy libraries to find a optimal temperature using a custom written algorithm. Then the AC is turned on and the optimum temperature is set using IR commands. Other constraints like Fan speed and Fan swing(On/Off) are decided and set automatically.
+
+We wish to create a interface for the project so that the customers can interact in a easier way,the database of remotes certainly requires more remotes which we'll work on.We'll rework on the Temperature determination algorithm to get more precise end results. We might consider altering the image analysis algorithm(and us Contour). We will also give an option to record their remotes if their brand/model doesn't exist in the database.
+
+Parts Used:-
+DHT11
+IR LED's
+Raspberry Pi 3
+FLiR Lepton Camera(Propose to use)
+Jumper's and Breadboard
+
+OS Libs used:-
+NumPy
+OpenCV
+LIRC
+
+Difficulties Faced:
+1) Determination in body temperature using Thermal Imaging(Being worked on)
+2)Algorithm to find a accurate optimal temperature based on room temperature and body heat.(Included in code-Working on it for improvement)
+3) Transmission of commands to AC using IR as they follow a much complex method as compared to TV's or other devices.
