@@ -3,16 +3,53 @@ When the device is first turned on it downloads all the remotes available in the
 We wish to create a interface for the project so that the customers can interact in a easier way,the database of remotes certainly requires more remotes which we'll work on.We'll rework on the Temperature determination algorithm to get more precise end results. We might consider altering the image analysis algorithm(and us Contour). We will also give an option to record their remotes if their brand/model doesn't exist in the database.
 
 Parts Used:-
-DHT11
-IR LED's
-Raspberry Pi 3
-FLiR Lepton Camera(Propose to use)
-Jumper's and Breadboard
+PIR Sensor-Human motion detection.
+DHT11-Temperature sensor
+IR LED's-Transmission of commands to the AirConditioner
+Raspberry Pi 3-Processing all the data
+FLiR Lepton Camera(Propose to use)-Thermal Imaging to find body surface temperature
+Jumper's and Breadboard -Connections,Ofcours
 
 OS Libs used:-
-NumPy
-OpenCV
-LIRC
+OpenCV-Image capture,Image analysis.
+NumPy -For analysing image as a set of easily interpretable numerical values.
+LIRC -Trasmission of IR Commands to the AC.
+
+Procedure involved:
+1)Firstly the Raspberry Pi(called pi from now on) waits for human motion to be detected by the Pyroelectric IR module
+2) When motion is detected,DHT11 module is used to capture the temperature and humidity. And the thermal camera(FLiR Lepton) captures a thermal image
+3)This image is analysed
+    If No heat(or negligible heat) is detected:
+      Human=Absent
+        AC Turn off
+    elif Body warm(hot):
+      Human.FeelingHOT
+        Find temperature using room temperature and image analysis of the thermal scan by using a custom algorithm
+          Set.Temperature
+          Set.FanSpeed.High
+          Set.Turbo.ON
+     elif Body(Normal)
+      Human.comfortable
+      Find temperature using room temperature and image analysis of the thermal scan by using a custom algorithm
+      Set.Temperature
+      set.FanSpeed.Normal
+     elif Body cold
+      Human.FeelingCOLD
+      Find temperature using room temperature and image analysis of the thermal scan by using a custom algorithm
+      Set.Temperature
+      Set.FanSpeed.LOW
+4)Another image is captured using the thermal camera now
+      delta = |background_model – current_frame|
+      if motion detected:
+        human=moving
+          Fan.Swing=on
+      else:
+        fan.swing=off
+5)Wait for 5 mins and loop.
+
+
+        
+      
 
 Difficulties Faced:
 1) Determination in body temperature using Thermal Imaging(Being worked on)
