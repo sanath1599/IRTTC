@@ -1,6 +1,13 @@
 When the device is first turned on it downloads all the remotes available in the database and asks the user to input a String (Brand of AC). The script then searches for the configuration files with that name and moves it to the required folder and loads it. Then starts the actual part. On detection of motions using the Pyroelectric IR sensor, the DHT11 Module captures the room temperature,the thermal imaging sensor captures an image and the script analyses the image and room temperature using OPENCV and NumPy libraries to find a optimal temperature using a custom written algorithm. Then the AC is turned on and the optimum temperature is set using IR commands. Other constraints like Fan speed and Fan swing(On/Off) are decided and set automatically.
 
-We wish to create a interface for the project so that the customers can interact in a easier way,the database of remotes certainly requires more remotes which we'll work on.We'll rework on the Temperature determination algorithm to get more precise end results. We might consider altering the image analysis algorithm(and us Contour). We will also give an option to record their remotes if their brand/model doesn't exist in the database.
+Future possibilities:
+We wish to create a interface for the project so that the customers can interact in a easier way,the database of remotes certainly requires more remotes which we'll work on.
+Face recognition will be used along with machine learning so that the individual can be recognised and his profile be loaded for a more personalised temperature. A user overwide option shall be provided and each time it is used,the machine learns and improves itself for that profile! Results can be analysed for a more precise end result.
+We'll rework on the Temperature determination algorithm to get more precise end results.
+We might consider altering the image analysis algorithm(and us Contour).
+We will also give an option to record their remotes if their brand/model doesn't exist in the database.
+
+
 
 Parts Used:-
 PIR Sensor-Human motion detection.
